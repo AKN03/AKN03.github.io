@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +12,7 @@
             padding: 0;
             background-color: #f4f4f4;
         }
+
         .container {
             max-width: 800px;
             margin: 20px auto;
@@ -20,19 +21,33 @@
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
+
+        h2 {
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            color: #555;
+        }
+
         input[type="text"],
         input[type="email"],
+        input[type="tel"],
+        input[type="date"],
+        input[type="number"],
+        input[type="month"],
         textarea {
             width: 100%;
             padding: 10px;
-            margin: 5px 0;
+            margin: 5px 0 15px;
             border: 1px solid #ccc;
             border-radius: 5px;
             box-sizing: border-box;
+            font-size: 16px;
         }
-        textarea {
-            height: 100px;
-        }
+
         button {
             padding: 10px 20px;
             background-color: #4caf50;
@@ -40,9 +55,57 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            font-size: 16px;
+            margin: 10px 0;
         }
+
         button:hover {
             background-color: #45a049;
+        }
+
+        .remove-button {
+            background-color: #f44336;
+        }
+
+        .remove-button:hover {
+            background-color: #e53935;
+        }
+
+        .table {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .column {
+            flex: 1;
+            margin: 0 10px;
+            min-width: 45%;
+            box-sizing: border-box;
+        }
+
+        .experienceField {
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .experienceField .remove-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        .duration {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .duration label,
+        .duration input {
+            width: 48%;
         }
     </style>
 </head>
@@ -50,41 +113,171 @@
 <div class="container">
     <h2>CV Builder</h2>
     <form id="cvForm">
-        <label for="fullName">Full Name:</label>
-        <input type="text" id="fullName" name="fullName" required>
+        <div class="table">
+            <div class="column">
+                <label for="Name">Meno:</label>
+                <input type="text" id="Name" name="Name" required>
+            </div>
+            <div class="column">
+                <label for="Surname">Priezvisko:</label>
+                <input type="text" id="Surname" name="Surname" required>
+            </div>
+        </div>
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
+        <label for="Birthdate">Dátum narodenia:</label>
+        <input type="date" id="Birthdate" name="Birthdate" required>
 
-        <label for="phone">Phone:</label>
-        <input type="text" id="phone" name="phone" required>
+        <label for="Phone">Telefónne číslo:</label>
+        <input type="tel" id="Phone" name="Phone" required>
 
-        <label for="education">Education:</label>
-        <textarea id="education" name="education" required></textarea>
+        <label for="Email">E-mail:</label>
+        <input type="email" id="Email" name="Email" required>
 
-        <label for="experience">Work Experience:</label>
-        <textarea id="experience" name="experience" required></textarea>
+        <div>
+            <label>Vzdelanie:</label>
+        </div>
 
-        <label for="skills">Skills:</label>
-        <textarea id="skills" name="skills" required></textarea>
+        <label for="SsStart">Začiatok:</label>
+        <input type="number" id="SsStart" name="SsStart" min="1900" max="2100" placeholder="rok">
 
-        <button type="submit">Generate CV</button>
+        <label for="SsEnd">Koniec:</label>
+        <input type="number" id="SsEnd" name="SsEnd" min="1900" max="2100" placeholder="rok">
+
+        <label for="SsSchool">Stredná Škola:</label>
+        <input type="text" id="SsSchool" name="SsSchool">
+
+        <label for="SsCity">Mesto:</label>
+        <input type="text" id="SsCity" name="SsCity">
+
+        <label for="SsCountry">Krajina:</label>
+        <input type="text" id="SsCountry" name="SsCountry">
+
+        <label for="SsFinalExam">Typ záverečnej skúšky:</label>
+        <input type="text" id="SsFinalExam" name="SsFinalExam">
+
+        <label for="experienceFields">Pracovné skúsenosti:</label>
+        <div id="experienceFields">
+            <div class="experienceField">
+                <button type="button" class="remove-button">Odstrániť</button>
+                <label>Názov firmy:</label>
+                <input type="text" name="jobTitle[]" placeholder="Názov firmy" required>
+                <label>Mesto:</label>
+                <input type="text" name="location[]" placeholder="Mesto" required>
+                <label>Krajina:</label>
+                <input type="text" name="location[]" placeholder="Krajina" required>
+                <div class="duration">
+                    <label>Začiatok:</label>
+                    <input type="month" name="startDate[]" class="startDate" required>
+                    <label>Koniec:</label>
+                    <input type="month" name="endDate[]" class="endDate" required>
+                </div>
+                <textarea name="description[]" placeholder="pracovná náplň" required></textarea>
+            </div>
+        </div>
+        <button type="button" id="addExperience">Pridať skúsenosť</button>
     </form>
 </div>
 
 <script>
-    // JavaScript for form submission
-    document.getElementById('cvForm').addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent form submission
-        // Gather form data
-        const formData = new FormData(event.target);
-        const cvData = {};
-        formData.forEach((value, key) => {
-            cvData[key] = value;
+    // JavaScript for adding and removing experience fields dynamically
+    document.getElementById('addExperience').addEventListener('click', function () {
+        const experienceFields = document.getElementById('experienceFields');
+        const newExperienceField = document.createElement('div');
+        newExperienceField.classList.add('experienceField');
+        newExperienceField.innerHTML = `
+            <button type="button" class="remove-button">Odstrániť</button>
+            <label>Názov firmy:</label>
+            <input type="text" name="jobTitle[]" placeholder="Názov firmy" required>
+            <label>Mesto:</label>
+            <input type="text" name="location[]" placeholder="Mesto" required>
+            <label>Krajina:</label>
+            <input type="text" name="location[]" placeholder="Krajina" required>
+            <div class="duration">
+                <label>Začiatok:</label>
+                <input type="month" name="startDate[]" class="startDate" required>
+                <label>Koniec:</label>
+                <input type="month" name="endDate[]" class="endDate" required>
+            </div>
+            <textarea name="description[]" placeholder="pracovná náplň" required></textarea>
+        `;
+        experienceFields.appendChild(newExperienceField);
+        addRemoveButtonListener(newExperienceField.querySelector('.remove-button'));
+    });
+
+    function addRemoveButtonListener(button) {
+        button.addEventListener('click', function () {
+            button.parentElement.remove();
         });
-        // Display CV data (you can modify this part to suit your needs)
-        console.log(cvData);
-        alert('CV Generated! Check console for details.');
+    }
+
+    // Add remove button listener to initial experience field
+    document.querySelectorAll('.remove-button').forEach(button => {
+        addRemoveButtonListener(button);
+    });
+
+    document.getElementById('sendMessage').addEventListener('click', function () {
+        // Collecting form data
+        const formData = {
+            Name: document.getElementById('Name').value,
+            Surname: document.getElementById('Surname').value,
+            Birthdate: document.getElementById('Birthdate').value,
+            Phone: document.getElementById('Phone').value,
+            Email: document.getElementById('Email').value,
+            Education: {
+                StartYear: document.getElementById('SsStart').value,
+                EndYear: document.getElementById('SsEnd').value,
+                School: document.getElementById('SsSchool').value,
+                City: document.getElementById('SsCity').value,
+                Country: document.getElementById('SsCountry').value,
+                FinalExam: document.getElementById('SsFinalExam').value
+            },
+            Experience: []
+        };
+
+        // Collecting experience data
+        const experienceFields = document.querySelectorAll('.experienceField');
+        experienceFields.forEach(field => {
+            formData.Experience.push({
+                JobTitle: field.querySelector('input[name="jobTitle[]"]').value,
+                Location: {
+                    City: field.querySelectorAll('input[name="location[]"]')[0].value,
+                    Country: field.querySelectorAll('input[name="location[]"]')[1].value
+                },
+                Duration: {
+                    StartDate: field.querySelector('.startDate').value,
+                    EndDate: field.querySelector('.endDate').value
+                },
+                Description: field.querySelector('textarea[name="description[]"]').value
+            });
+        });
+
+        // Convert form data to JSON
+        const jsonData = JSON.stringify(formData);
+        console.log(jsonData); // You can change this to display the JSON data wherever you need it
+
+        // URL of your deployed Google Apps Script web app
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbyZQLbyoaEGZdPWPUQv_3dTydJbJYz7RHVPtB_YPlCryrxDNRy1SkFG19fz9FgpRAM/exec';
+
+        fetch(scriptURL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "text/plain"
+            },
+            body: jsonData // Send JSON data
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.text();
+            })
+            .then(data => {
+                alert(data); // Display the response message directly
+            })
+            .catch(error => {
+                console.error('Error sending message to Google Sheet:', error);
+                alert('Error sending message to Google Sheet. Please try again later.');
+            });
     });
 </script>
 </body>

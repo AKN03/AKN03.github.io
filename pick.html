@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Picker and Function to Output JSON Object</title>
+</head>
+<body>
+<input type="file" id="fileInput">
+<button onclick="handleFile()">Process File</button>
+
+<script>
+    async function handleFile() {
+        let jsonContent = await processFileToJson("fileInput");
+
+        console.log(jsonContent); // Print the JSON content directly
+    }
+
+
+    function processFileToJson(InputId) {
+        const file = document.getElementById(InputId).files[0];
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+
+            reader.onload = function (event) {
+                const fileContent = event.target.result;
+                const jsonContent = {
+                    fileName: file.name,
+                    fileSize: file.size,
+                    fileType: file.type,
+                    content: fileContent
+                };
+                resolve(jsonContent);
+            };
+
+            reader.onerror = function (event) {
+                reject(event.target.error);
+            };
+
+            reader.readAsText(file);
+        });
+    }
+</script>
+</body>
+</html>

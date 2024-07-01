@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tab Example with Input Fields</title>
+    <style>
+        /* Style the tab content */
+        .tabcontent {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Tab buttons -->
+<div class="tab">
+    <button class="tablinks" onclick="openTab('Tab1')">Tab 1</button>
+    <button class="tablinks" onclick="openTab('Tab2')">Tab 2</button>
+    <button class="tablinks" onclick="openTab('Tab3')">Tab 3</button>
+</div>
+
+<!-- Tab content -->
+<div id="Tab1" class="tabcontent">
+    <h3>Tab 1 Content</h3>
+    <p>This is the content of tab 1.</p>
+    <label for="input1">Input 1:</label>
+    <input type="text" id="input1" name="input1"><br><br>
+    <label for="input2">Input 2:</label>
+    <input type="text" id="input2" name="input2">
+</div>
+
+<div id="Tab2" class="tabcontent">
+    <h3>Tab 2 Content</h3>
+    <p>This is the content of tab 2.</p>
+    <label for="input3">Input 3:</label>
+    <input type="text" id="input3" name="input3"><br><br>
+    <label for="input4">Input 4:</label>
+    <input type="text" id="input4" name="input4">
+</div>
+
+<div id="Tab3" class="tabcontent">
+    <h3>Tab 3 Content</h3>
+    <p>This is the content of tab 3.</p>
+    <label for="input5">Input 5:</label>
+    <input type="text" id="input5" name="input5"><br><br>
+    <label for="input6">Input 6:</label>
+    <input type="text" id="input6" name="input6">
+</div>
+
+<script>
+    function openTab(tabName) {
+        let i, tabcontent;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        document.getElementById(tabName).style.display = "block";
+    }
+</script>
+
+</body>
+</html>

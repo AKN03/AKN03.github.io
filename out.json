@@ -1,0 +1,110 @@
+{
+  "Meno": "Adam",
+  "Priezvisko": "ahoj",
+  "Dátum narodenia": "",
+  "Telefónne číslo": "",
+  "E-mail": "",
+  "Národnosť": "",
+  "Rodinný stav": "",
+  "Ulica": "",
+  "PSČ": "",
+  "Mesto": "",
+  "Krajina": "",
+  "Typ_regosracie": "",
+  "Zaujem": {
+    "Letná sezona": "",
+    "Interest": "",
+    "Student": "",
+    "5/4_Hotel": "",
+    "3/2_Hotel": "",
+    "Penzion": "",
+    "Restaurant": "",
+    "Chata": "",
+    "Pizzeria": "",
+    "Austria": "",
+    "Italy": "",
+    "Germany": "",
+    "Switzerland": "",
+    "": ""
+  },
+  "Nastup": {
+    "startDate": "",
+    "endDate": "",
+    "": ""
+  },
+  "Jazyky": {
+    "NJ": "A1 / úplný začiatočník",
+    "NJ_Dĺžka štúdia": "0",
+    "TAL": "A2 / začiatočník",
+    "TAL_Dĺžka štúdia": "0",
+    "ANJ": "C2 / expert",
+    "ANJ_Dĺžka štúdia": "0",
+    "Iné jazyky": ""
+  },
+  "Stredna": {
+    "SS_Začiatok": "",
+    "Ss_Koniec": "",
+    "Ss_Názov školy": "",
+    "Ss_Mesto": "",
+    "Ss_Krajina": "",
+    "Ss_Typ záverečnej skúšky": ""
+  },
+  "Vyska": {
+    "Hs_Začiatok": "",
+    "Hs_Koniec": "",
+    "Hs_Názov školy": "",
+    "Hs_Mesto": "",
+    "Hs_Krajina": "",
+    "Hs_Typ záverečnej skúšky": ""
+  },
+  "Pozicie": {
+    "basic": {
+      "Chyžná": "",
+      "Chyžná/výpomoc v kuchyni": "",
+      "Umývač riadov": "",
+      "Pomocník/pomocníčka v kuchyni": ""
+    },
+    "plus": {
+      "Pomocný čašník/čašníčka bez inkassa": "",
+      "Chyžná/výpomoc v obsluhe": "",
+      "Chyžná/výpomoc v kuchyni a v servise": "",
+      "Údržbár v hoteli": "",
+      "Masérka": "",
+      "Kozmetička": "",
+      "Pomocný barman/pomocná barmanka": "",
+      "Čašníčka so znalosťou talianského jazyka": "",
+      "Kuchár so znalosťou talianskeho alebo anglického jazyka": "",
+      "Animátorka": ""
+    },
+    "top": {
+      "Kuchár/Kuchárka": "",
+      "Čašník/Čašníčka s inkasom": "",
+      "Barman/Barmanka": "",
+      "Pizza kuchár": "",
+      "Chyžná s praxou viac ako 3 roky v zahraničí": "",
+      "Recepčný/Recepčná": "",
+      "Cukrár/Cukrárka": "",
+      "Masérka": "",
+      "Hausdamme-asistentka": ""
+    },
+    "profi": {
+      "Čašník/Čašníčka s inkasom": "",
+      "1. Kuchár/Kuchárka": "",
+      "2. Kuchár/Kuchárka": "",
+      "šéfkuchár/šéfkuchárka": "",
+      "Recepčný/Recepčná": "",
+      "Hausdamme/vedúca chyžných": ""
+    }
+  },
+  "Vodicsky": "Vodičšský",
+  "Prax": [
+    {
+      "Začiatok": "",
+      "Koniec": "",
+      "Názov": "",
+      "Mesto": "",
+      "Krajina": "",
+      "pozícia": ""
+    }
+  ]
+}

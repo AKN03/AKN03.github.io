@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="sk" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Builder</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            color: #555;
+        }
+
+        textarea,
+        input,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        .box {
+            border: 1px solid #ccc;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            position: relative;
+            display: flex; /* Use Flexbox */
+            flex-direction: column; /* Stack elements vertically */
+        }
+
+        input[type=checkbox] {
+            width: auto;
+            margin-right: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .hor {
+            display: flex;
+        }
+
+        .tab {
+            display: block;
+        }
+    </style>
+
+</head>
+<body>
+<div class="container">
+    <form id="cvForm" onsubmit="CollectData()">
+        <!--        <div>-->
+        <!--            <button id="BTab1" type="button" class="tablinks" onclick="openTab('Tab1')">Osobné údaje</button>-->
+        <!--            <button id="BTab2" type="button" class="tablinks" onclick="openTab('Tab2')">Požiadavky na hľadanú prácu-->
+        <!--            </button>-->
+        <!--            <button id="BTab3" type="button" class="tablinks" onclick="openTab('Tab3')">Vzdelanie a pracovné-->
+        <!--                skúsenosti-->
+        <!--            </button>-->
+        <!--            <button id="BTab4" type="button" class="tablinks" onclick="openTab('Tab4')">Doplnkové informácie</button>-->
+        <!--        </div>-->
+        <div></div>
+        <div id="Tab1" class="tab" style="display: block">
+            <h2>Osobné údaje</h2>
+
+            <div class="box">
+                <label for="Name">Meno: <input type="text" id="name" name="Meno" required></label>
+                <label for="Surname">Priezvisko:</label>
+                <input type="text" id="Surname" name="Priezvisko" required>
+
+                <label for="Birthdate">Dátum narodenia:</label>
+                <input type="date" id="Birthdate" name="Dátum narodenia" required>
+
+                <label for="Phone">Telefónne číslo:</label>
+                <input type="tel" id="Phone" name="Telefónne číslo" required>
+
+                <label for="Email">E-mail:</label>
+                <input type="email" id="Email" name="E-mail" required>
+
+                <label for="Citizen">Národnosť</label>
+                <select id="Citizen" Name="Národnosť" required> </select>
+
+                <label for="Rodina">Rodinný stav</label>
+                <select id="Rodina" name="Rodinný stav" required> </select>
+            </div>
+
+
+            <div class="box address">
+                <h3>Adresa trvalého bydliska:</h3>
+                <label for="Street">Ulica:</label>
+                <input type="text" id="Street" name="Ulica" required>
+
+                <label for="Number">PSČ:</label>
+                <input type="number" id="Number" name="PSČ" required>
+
+                <label for="City">Mesto:</label>
+                <input type="text" id="City" name="Mesto" required>
+
+                <label for="Country">Krajina:</label>
+                <input type="text" id="Country" name="Krajina" required>
+            </div>
+
+        </div>
+
+        <div id="Tab2" class="tab">
+            <label>Typ Registrácie: <select id="Package" required></select></label>
+
+            <h1>Záujem o pracovné pozície</h1>
+
+            <div id="basic" class="box">
+                <h2>Program BASIC</h2>
+            </div>
+            <div id="plus" class="box">
+                <h2>Program PLUS</h2>
+            </div>
+            <div id="top" class="box">
+                <h2>Program TOP</h2>
+            </div>
+            <div id="profi" class="box">
+                <h2>Program PROFI</h2>
+            </div>
+
+            <div id="zaujem" class="box">
+                <h3>Mám záujem o prácu:</h3>
+                <h4>Na obdobie:</h4>
+                <div id="season"></div>
+                <label><input type="checkbox" name="Letná sezona">na letnú sezónu</label>
+                <label><input type="checkbox" name="Letná sezona">na zimnú sezónu</label>
+                <label><input type="checkbox" name="Interest">na ročnú pracovnú zmluvu/dobu neurčitú s nástupom
+                    dohodou</label>
+                <label><input type="checkbox" name="Student">práca pre študenta cez letné prázdniny</label>
+
+                <h4>V zariadeniach:</h4>
+                <div id="accomodation"></div>
+                <label><input type="checkbox" name="5/4_Hotel"> ***** alebo **** Hotel</label>
+                <label><input type="checkbox" name="3/2_Hotel">*** alebo ** Hotel</label>
+                <label><input type="checkbox" name="Penzion">Penzión</label>
+                <label><input type="checkbox" name="Restaurant">Reštaurácia</label>
+                <label><input type="checkbox" name="Chata">Horská chata</label>
+                <label><input type="checkbox" name="Pizzeria">Pizzeria</label>
+
+                <h4>V krajinách:</h4>
+                <div id="countries"></div>
+                <label><input type="checkbox" name="Austria">Rakúsko</label>
+                <label><input type="checkbox" name="Italy">Severné Taliansko (Südtirol)</label>
+                <label><input type="checkbox" name="Germany">Nemecko</label>
+                <label><input type="checkbox" name="Switzerland">
+                    Švajčiarsko ( vhodné pre klientov so dobrou znalosťou nemeckého jazyka a praxou v zahraničí)</label>
+
+                <label>Preferujem krajinu: <select id="Preference"></select></label>
+
+            </div>
+            <div id="nastup" class="box">
+                <label>Dátum najskoršieho možného nástupu do práce: <input type="date" id="startDate" name="startDate"
+                                                                           required></label>
+                <label>Práca môže trvať do: <input type="text" id="endDate" name="endDate" required></label>
+                <label for="stav">V súčastnosti som: </label>
+                <select id="stav" required> </select>
+            </div>
+        </div>
+
+
+        <div id="Tab3" class="tab">
+            <div id="jazyky" class="box">
+                <h3>Jazyky:</h3>
+
+                <div style="display: flex; align-items: center;">
+                    <div>
+                        <label for="NJ">Nemčina:</label>
+                        <select id="NJ" name="NJ" required></select>
+                    </div>
+                    <div style="margin-left: 20px;">
+                        <label for="NJLength">Dĺžka štúdia:</label>
+                        <input type="text" id="NJLength" name="NJ_Dĺžka štúdia" placeholder="počet rokov" value=0
+                               required>
+                    </div>
+                </div>
+
+                <div style="display: flex; align-items: center;">
+                    <div>
+                        <label for="TAL">Taliančina:</label>
+                        <select id="TAL" name="TAL" required></select>
+                    </div>
+                    <div style="margin-left: 20px;">
+                        <label>Dlžka štúdia: <input type="text" name="TAL_Dĺžka štúdia" placeholder="počet rokov"
+                                                    value=0 required></label>
+                    </div>
+                </div>
+                <div style="display: flex; align-items: center;">
+                    <div>
+                        <label for="ANJ">Angličtina:</label>
+                        <select id="ANJ" name="ANJ" required></select>
+                    </div>
+                    <div style="margin-left: 20px;">
+                        <label>Dlžka štúdia: <input type="text" name="ANJ_Dĺžka štúdia" placeholder="počet rokov"
+                                                    value=0 required></label>
+
+                    </div>
+                </div>
+
+                <label> Znalosť iných cudzých jazykov:
+                    <input type="text" name="Iné jazyky" placeholder="napr. ruština, španielčina, francúzština"></label>
+
+            </div>
+
+            <div class="box">
+                <h3>Vzdelanie:</h3>
+                <div id="stredna" class="box">
+                    <h4>Stredná škola:</h4>
+
+
+                    <label for="SsStart">Začiatok:</label>
+                    <select id="SsStart" name="SS_Začiatok" required></select>
+
+                    <label for="SsEnd">Koniec:</label>
+                    <select id="SsEnd" name="Ss_Koniec" required></select>
+
+                    <label for="SsSchool">Názov školy:</label>
+                    <input type="text" id="SsSchool" name="Ss_Názov školy" required>
+
+                    <label for="SsCity">Mesto:</label>
+                    <input type="text" id="SsCity" name="Ss_Mesto" required>
+
+                    <label for="SsCountry">Krajina:</label>
+                    <input type="text" id="SsCountry" name="Ss_Krajina" required>
+
+                    <label for="SsFinalExam">Typ záverečnej skúšky:</label>
+                    <input type="text" id="SsFinalExam" name="Ss_Typ záverečnej skúšky" required>
+                </div>
+                <button type="button" id="add" onclick="addUniversity(this)">Pridať vysokú školu</button>
+                <div id="Hs" class="box" style="display: none">
+                    <h4>Vyššie vzdelanie:</h4>
+                    <label for="HsStart">Začiatok:</label>
+                    <select id="HsStart" name="Hs_Začiatok"></select>
+                    <label for="HsEnd">Koniec:</label>
+                    <select id="HsEnd" name="Hs_Koniec"></select>
+                    <label for="HsSchool">Názov školy:</label>
+                    <input type="text" id="HsSchool" name="Hs_Názov školy">
+                    <label for="HsCity">Mesto:</label>
+                    <input type="text" id="HsCity" name="Hs_Mesto">
+                    <label for="HsCountry">Krajina:</label>
+                    <input type="text" id="HsCountry" name="Hs_Krajina">
+                    <label for="HsFinalExam">Typ záverečnej skúšky:</label>
+                    <input type="text" id="HsFinalExam" name="Hs_Typ záverečnej skúšky">
+                    <button type="button" onclick="removeUniversity(this)">Odstrániť</button>
+                </div>
+            </div>
+
+            <div class="box">
+                <h3>Ostatné zručnosti:</h3>
+                <label><input type="checkbox" id="vodicsky" name="Vodičšský">Mám vodičšský preukaz</label>
+            </div>
+
+            <div class="box" id="Experience">
+                <h3>Pracovné skúsenosti:</h3>
+                <button type="button" id="addExperienceButton" onclick="addExperience(this,false)">Pridať skúsenosť
+                </button>
+            </div>
+
+
+        </div>
+
+        <div id="Tab4" class="tab">
+            <h2>Doplnkové informácie</h2>
+
+            <label> Fotka:
+                <input type="file" id="file-upload1" name="file-upload" class="file-input" accept="*/*"
+                       required></label>
+
+
+            <div id="statements" class="box">
+                <h3>Vyhlásenia:</h3>
+            </div>
+            <div id="additional" class="box">
+                <h2>Nepovinné</h2>
+
+                <label> Odporúčanie:
+                    <input type="file" id="file-upload2" name="file-upload" class="file-input" accept="*/*"></label>
+
+                <label> Práca v dvojici: (dve pracovné miesta u jedného zamestnávateľa) <input type="text"
+                                                                                               name="dvojica"
+                                                                                               placeholder="Meno druhej osoby"></label>
+
+                <label for="additional_info">Ďalšie informácie k požiadavkám, ktoré má nová práca spĺňať: <textarea
+                        id="additional_info" name="additional_info" rows="4" cols="50"></textarea></label>
+
+
+                <label for="motivation">Vaša hlavná motivácia ísť pracovať do zahraničia: <input type="text"
+                                                                                                 id="motivation"
+                                                                                                 name="motivation"
+                                                                                                 size="50"></label>
+
+
+                <label>Záujem o niektorú zo zverejnených pracovných ponúk na www.espor.sk: <input type="text"
+                                                                                                  id="job_offer_interest"
+                                                                                                  name="job_offer_interest"></label>
+
+            </div>
+            <button>Odoslať</button>
+        </div>
+    </form>
+</div>
+<script>
+
+    const Vyberte = document.createElement('option');
+    Vyberte.value = "";
+    Vyberte.text = "--Vyberte--";
+
+    const StavOptions = [
+        "zamestnaný, s výpovednou lehotou",
+        "zamestnaný, bez výpovednej lehoty",
+        "nezamestnaný, v evidencii Úradu práce",
+        "nezamestnaný, neevidovaný Úradom práce",
+        "študent vysokej školy"
+    ];
+
+    const PackageOptions = [
+        "Základná",
+        "Štandartná",
+        "Premium",
+        "Obnovenie 1",
+        "Obnovenie 2"
+    ];
+
+    const CitizenshipOptions = [
+        "Slovenská",
+        "Česká",
+        "Maďarská",
+        "Poľská",
+        "Iná"
+    ];
+
+    const FamilyOptions = [
+        "slobodný/slobodná",
+        "ženatý/vydatá",
+        "rozvedený/rozvedená"
+    ];
+
+    const PreferenciaOptions = [
+        "Rakúsko",
+        "Severné Taliansko (Südtirol)",
+        "Nemecko",
+        "Švajčiarsko"
+    ];
+
+    const languageOptions = [
+        "Žiadna",
+        "A1 / úplný začiatočník",
+        "A2 / začiatočník",
+        "B1 / mierne pokročilý",
+        "B2 / stredne pokročilý",
+        "C1 / pokročilý",
+        "C2 / expert"
+    ];
+
+    const programBasic = [
+        "Chyžná",
+        "Chyžná/výpomoc v kuchyni",
+        "Umývač riadov",
+        "Pomocník/pomocníčka v kuchyni",
+    ];
+    const programPlus = [
+        "Pomocný čašník/čašníčka bez inkassa",
+        "Chyžná/výpomoc v obsluhe",
+        "Chyžná/výpomoc v kuchyni a v servise",
+        "Údržbár v hoteli",
+        "Masérka",
+        "Kozmetička",
+        "Pomocný barman/pomocná barmanka",
+        "Čašníčka so znalosťou talianského jazyka",
+        "Kuchár so znalosťou talianskeho alebo anglického jazyka",
+        "Animátorka"
+    ];
+    const programTop = [
+        "Kuchár/Kuchárka",
+        "Čašník/Čašníčka s inkasom",
+
+        "Barman/Barmanka",
+        "Pizza kuchár",
+        "Chyžná s praxou viac ako 3 roky v zahraničí",
+        "Recepčný/Recepčná",
+        "Cukrár/Cukrárka",
+        "Masérka",
+        "Hausdamme-asistentka"
+    ];
+    const programProfi = [
+        "Čašník/Čašníčka s inkasom",
+        "1. Kuchár/Kuchárka",
+        "2. Kuchár/Kuchárka",
+        "šéfkuchár/šéfkuchárka",
+        "Recepčný/Recepčná",
+        "Hausdamme/vedúca chyžných"
+    ];
+
+    const statements = [
+        "Prácu si hľadám aj cez iné agentúry.",
+        "Prácu si hľadám aj sám cez vlastné kontakty.",
+        "Poberám invalidný dôchodok.",
+        "Mám podmienku zobrať so si sebou do zamestnania aj domáce zviera*****.",
+        "Do zahraničia plánujem cestovať vlastným autom.",
+        "Vyhlasujem, že nemám záznam v Registri trestov.",
+        "Vyhlasujem, že nemám žiadne zdravotné problémy, ktoré by mohli ovplyvniť moju prácu v novom zamestnávaní v gastronómii, v hotelierstve v zahraničí.",
+        "Vyhlasujem, že som uzrozumený s podmienkami spolupráce a platobnými podmienkami.",
+        "Súhlasím so spracovaním osobných údajov pre účely poskytnutia služieb a získania zamestnania.",
+        "Súhlasím so spracovaním osobných údajov pre marketingové účely (zasielanie aktuálnych pracovných ponúk)."
+    ];
+
+    addExperience(getElementById('addExperienceButton'), true);
+
+    FillSelect('stav', StavOptions);
+    FillSelect('Package', PackageOptions);
+    FillSelect('Citizen', CitizenshipOptions);
+    FillSelect('Rodina', FamilyOptions);
+    FillSelect('Preference', PreferenciaOptions);
+    FillSelect("NJ", languageOptions);
+    FillSelect("TAL", languageOptions);
+    FillSelect("ANJ", languageOptions);
+
+    addCheckBoxToDiv('basic', programBasic);
+    addCheckBoxToDiv('plus', programPlus);
+    addCheckBoxToDiv('top', programTop);
+    addCheckBoxToDiv('profi', programProfi);
+    addCheckBoxToDiv('statements', statements);
+
+    addYearsToSelect("SsStart");
+    addYearsToSelect("SsEnd");
+    addYearsToSelect("HsStart");
+    addYearsToSelect("HsEnd");
+
+
+    function FillSelect(selectID, options) {
+        const select = getElementById(selectID);
+        select.appendChild(Vyberte.cloneNode(true));
+        options.forEach(option => {
+            const optionElement = document.createElement('option');
+            optionElement.value = option;
+            optionElement.text = option;
+            select.appendChild(optionElement);
+        });
+    }
+
+    function addCheckBoxToDiv(divId, positions, required = false) {
+        positions.forEach(position => {
+            const label = document.createElement('label');
+            const input = document.createElement('input');
+            input.type = 'checkbox';
+            input.name = position;
+            input.value = position;
+            input.required = required;
+            label.appendChild(input);
+            label.appendChild(document.createTextNode(position));
+            getElementById(divId).appendChild(label);
+        });
+    }
+    
+    async function CollectData() {
+
+        const scriptURL = 'https://script.google.com/macros/s/AKfycby10QrxOi_8hKAHxCPMUSx3ycWlIr6NvP1etFpCx0I8VOc6aTxATNHvbCq_hLzdxpOpdw/exec';
+
+        let formData = new FormData();
+
+        formData = getFromDiv(getDiv('Tab1'));
+
+        formData.Typ_regosracie = getElementById('Package').value;
+
+        formData.Zaujem = getFromDiv(getDiv('zaujem'));
+        formData.Nastup = getFromDiv(getDiv('nastup'));
+
+        formData.Jazyky = getFromDiv(getDiv('jazyky'));
+
+        formData.Stredna = getFromDiv(getDiv('stredna'));
+        formData.Vyska = getFromDiv(getDiv('Hs'));
+
+        formData.Pozicie = {};
+
+        formData.Pozicie.basic = getFromDiv(getDiv('basic'));
+        formData.Pozicie.plus = getFromDiv(getDiv('plus'));
+        formData.Pozicie.top = getFromDiv(getDiv('top'));
+        formData.Pozicie.profi = getFromDiv(getDiv('profi'));
+
+        formData.statements = getFromDiv(getDiv('statements'));
+
+        formData.Vodicsky = getCheckboxValue(getElementById('vodicsky'));
+
+        formData.Prax = [];
+        const boxes = document.querySelectorAll('.box.experience');
+        boxes.forEach(box => {
+            formData.Prax.push(getFromDiv(box));
+        });
+
+        formData.Photo = await processFileToJson('file-upload1')
+        formData.Rating = await processFileToJson('file-upload2')
+
+        const jsonData = JSON.stringify(formData);
+        console.log(jsonData)
+
+// Create loading screen
+        const loadingScreen = document.createElement('div');
+        loadingScreen.id = 'loadingScreen';
+        loadingScreen.style.position = 'fixed';
+        loadingScreen.style.top = '0';
+        loadingScreen.style.left = '0';
+        loadingScreen.style.width = '100%';
+        loadingScreen.style.height = '100%';
+        loadingScreen.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+        loadingScreen.style.color = 'white';
+        loadingScreen.style.display = 'flex';
+        loadingScreen.style.flexDirection = 'column';
+        loadingScreen.style.justifyContent = 'center';
+        loadingScreen.style.alignItems = 'center';
+        loadingScreen.style.zIndex = '9999';
+
+// Spinner element
+        const spinner = document.createElement('div');
+        spinner.style.border = '16px solid #f3f3f3';
+        spinner.style.borderTop = '16px solid #3498db';
+        spinner.style.borderRadius = '50%';
+        spinner.style.width = '80px';
+        spinner.style.height = '80px';
+        spinner.style.animation = 'spin 2s linear infinite';
+        loadingScreen.appendChild(spinner);
+
+// Loading text
+        const loadingText = document.createElement('div');
+        loadingText.innerText = 'Vytvárame vašu registráciu...';
+        loadingText.style.marginTop = '20px';
+        loadingScreen.appendChild(loadingText);
+
+        document.body.appendChild(loadingScreen);
+
+// Spinner animation
+        const styleSheet = document.createElement('style');
+        styleSheet.type = 'text/css';
+        styleSheet.innerText = `
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+`;
+        document.head.appendChild(styleSheet);
+
+// Fetch request
+        fetch(scriptURL, {
+            method: "POST",
+            body: jsonData
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.text();
+            })
+            .then(data => {
+                // Create a response box
+                const responseBox = document.createElement('div');
+                responseBox.style.position = 'fixed';
+                responseBox.style.top = '50%';
+                responseBox.style.left = '50%';
+                responseBox.style.transform = 'translate(-50%, -50%)';
+                responseBox.style.backgroundColor = '#fff';
+                responseBox.style.color = '#000';
+                responseBox.style.padding = '20px';
+                responseBox.style.borderRadius = '8px';
+                responseBox.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+                responseBox.style.zIndex = '10000';
+
+                // Add response text
+                const responseText = document.createElement('div');
+                responseText.innerText = data;
+                responseBox.appendChild(responseText);
+
+                // Add OK button
+                const okButton = document.createElement('button');
+                okButton.innerText = 'OK';
+                okButton.style.marginTop = '20px';
+                okButton.style.padding = '10px 20px';
+                okButton.style.border = 'none';
+                okButton.style.borderRadius = '5px';
+                okButton.style.backgroundColor = '#3498db';
+                okButton.style.color = 'white';
+                okButton.style.cursor = 'pointer';
+                okButton.addEventListener('click', () => {
+                    location.reload(); // Restart the page
+                });
+                responseBox.appendChild(okButton);
+
+                document.body.appendChild(responseBox);
+            })
+            .catch(error => {
+                console.error('Error sending message to Google Sheet:', error);
+                alert('Error sending message to Google Sheet. Please try again later.');
+            })
+            .finally(() => {
+                // Remove loading screen after request is complete
+                document.body.removeChild(loadingScreen);
+            });
+
+
+    }
+
+    function processFileToJson(InputId) {
+        const file = getElementById(InputId).files[0];
+        if (!file) {
+            return Promise.resolve("");
+        }
+
+        return new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.readAsArrayBuffer(file);
+            reader.onload = event => {
+                const fileData = {
+                    filename: file.name,
+                    mimeType: file.type,
+                    fileContent: [...new Int8Array(event.target.result)]
+                };
+                resolve(fileData);
+            };
+        });
+    }
+
+    function getDiv(divId) {
+        return getElementById(divId);
+    }
+
+
+    function getFromDiv(div) {
+        const result = {};
+        div.querySelectorAll('input, select').forEach(input => {
+            if (input.type === 'checkbox') {
+                result[input.name] = getCheckboxValue(input);
+            } else {
+                result[input.name] = input.value;
+            }
+        });
+        return result;
+    }
+
+    function getCheckboxValue(checkbox) {
+        return checkbox.checked ? checkbox.name : '';
+    }
+
+    function removeUniversity() {
+        const div = getElementById('Hs');
+        getElementById('add').style.display = 'block';
+        const inputsAndSelects = div.querySelectorAll('input, select');
+        inputsAndSelects.forEach(input => {
+            input.value = '';
+        });
+        div.style.display = 'none';
+    }
+
+    function addUniversity() {
+        getElementById('Hs').style.display = 'block';
+        getElementById('add').style.display = 'none';
+    }
+
+    function addExperience(button, first) {
+        let newExperience = document.createElement('div');
+        newExperience.classList.add('box');
+        newExperience.classList.add('experience');
+        newExperience.innerHTML = `<label>Začiatok:</label>
+                    <input type="month" name="Začiatok" class="startDate" required>
+                    <label>Koniec:</label>
+                    <input type="month" name="Koniec" class="endDate" required>
+                    <label>Názov firmy:</label>
+                    <input type="text" name="Názov" placeholder="Názov firmy" required>
+                    <label>Mesto:</label>
+                    <input type="text" name="Mesto" placeholder="Mesto" required>
+                    <label>Krajina:</label>
+                    <input type="text" name="Krajina" placeholder="Krajina" required>
+                    <label>Pracovná Pozícia:
+                    <select name="pozícia" required>
+                        <option value="">--Vyber--</option>
+                        <option value="chyžná">chyžná</option>
+                        <option value="kuchár">kuchár</option>
+                        <option value="čašník">čašník</option>
+                        <option value="pomocník v kuchyni">pomocník v kuchyni</option>
+                        <option value="Iné">Iné</option>
+                    </select></label>`;
+        if (!first) {
+            newExperience.innerHTML += `<button type="button" onclick="this.parentElement.remove()">Odstrániť</button>`
+        }
+        button.parentNode.insertBefore(newExperience, button);
+    }
+
+    function addYearsToSelect(yearPickerID) {
+        const yearPicker = getElementById(yearPickerID);
+        yearPicker.appendChild(Vyberte.cloneNode(true)); // Append the empty option first
+        const currentYear = new Date().getFullYear();
+        const yearsToShow = 100;
+        for (let i = currentYear; i >= currentYear - yearsToShow; i--) {
+            const option = document.createElement('option');
+            option.value = i.toString();
+            option.text = i.toString();
+            yearPicker.appendChild(option);
+        }
+    }
+
+    function openTab(tabName) {
+        // if(!getElementById("cvForm").checkValidity()){
+        //     return
+        // }
+        let tabContent = document.getElementsByClassName("tab");
+        for (let i = 0; i < tabContent.length; i++) {
+            tabContent[i].style.display = "none";
+        }
+        getElementById(tabName).style.display = "block";
+        window.scrollTo(0, 0);
+    }
+
+    function getElementById(id) {
+        return document.getElementById(id);
+    }
+
+</script>
+</body>
+</html>
